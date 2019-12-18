@@ -50,4 +50,4 @@ https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/python_sdk
 
 >POST 上传交易api：
 
-/sendTrans/rawTrans   上传json格式数据，发送交易上链
+/sendTrans/rawTrans   上传json格式数据，发送交易上链 
