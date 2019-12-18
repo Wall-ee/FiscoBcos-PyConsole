@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--    <link rel="icon" href="http://192.168.1.108:5100/static/image/logo-title.png" type="image/x-icon">-->
+    <meta name="HandheldFriendly" content="true">
+    <title>首页</title>
+    <script src="./js/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<!--    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+    <script src="./js/axios.min.js"></script>
+    <link href="./css/public.css" rel="stylesheet">
+    <link href="./css/all.css" rel="stylesheet">
+</head>
+<body>
+<div id="app" class="web-font">
+    <div style="height: 100%;">
+        <div element-loading-text="数据加载中..." element-loading-background="rgba(0, 0, 0, 0.8)" style="height: 100%;">
+            <div>
+                <div class="nav-header">
+                    <div class="container">
+                        <div class="logo">
+                            <a href="./index.html"><img src="./pic/fisco-bcos-logo.3a5e45c.png" class="image" style="width: 170px;"></a>
+                        </div>
+<!--                        <div class="nav-menu" style="float: left;">-->
+<!--                            <div class="nav-menu-item nav-item" style="display: inline-block; width: 160px; text-align: right;">-->
+<!--                                <span>1</span>-->
+<!--                                <div class="nav-chainType">-->
+
+<!--                                </div>-->
+<!--                                <ul class="select1">-->
+<!--                                    <li style="cursor: default;">-->
+<!--                                        <span class="name">1</span>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                                <i class="el-icon-caret-bottom icon-up icon">-->
+<!--                                </i>-->
+<!--                                <i class="el-icon-caret-top icon-down icon"></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="nav-menu">
+<!--                            <div class="nav-menu-item nav-item">配置-->
+<!--                                <i class="el-icon-caret-bottom icon-up"></i>-->
+<!--                                <i class="el-icon-caret-top icon-down"></i>-->
+<!--                                <ul class="nav-menu-item-option">-->
+<!--                                    <li class="option">群组配置</li>-->
+<!--                                    <li class="option">节点配置</li>-->
+<!--                                    <li class="option">合约配置</li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+                            <div class="nav-menu-item nav-item">区块链信息
+                                <i class="el-icon-caret-bottom icon-up"></i>
+                                <i class="el-icon-caret-top icon-down"></i>
+                                <ul class="nav-menu-item-option">
+                                    <li class="option"><a href="./index.html">概览</a></li>
+                                    <li class="option"><a href="./block_list.html">查看区块</a></li>
+                                    <li class="option"><a href="transaction_list.html">查看交易</a></li>
+                                </ul>
+                            </div>
+<!--                            <div class="nav-menu-item nav-item">帮助</div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="padding-top: 20px;"></div>
+            <div class="home main">
+                <div class="container">
+                    <div class="home-head">
+                        <div element-loading-text="数据加载中..." element-loading-background="rgba(0, 0, 0, 0.8)" class="home-head-data margin-right-10">
+                            <ul>
+                                <li class="lg-width bg-8693f3 margin-right-15 margin-bottom-15">
+                                    <a href="block_list.html">
+                                    <span class="home-head-data-label">当前块高</span>
+                                    <span class="home-head-data-content"> {{ blockNumber }}</span>
+                                    </a>
+                                </li>
+                                <li class="lg-width bg-bc8dee margin-left-15 margin-bottom-15">
+                                    <a href="transaction_list.html">
+                                    <span class="home-head-data-label">交易总量</span>
+                                    <span class="home-head-data-content"> {{ txSum }}</span>
+                                    </a>
+                                </li>
+                                <li class="lg-width bg-ffa897 margin-top-15 margin-right-15">
+                                    <span class="home-head-data-label">失败的交易量</span>
+                                    <span class="home-head-data-content"> {{ failedTxSum }}</span>
+                                </li>
+                                <li class="lg-width bg-89c3f8 margin-top-15  margin-left-15">
+                                    <span class="home-head-data-label">PBFT 当前视图</span>
+                                    <span class="home-head-data-content"> {{ pbftView }}</span>
+                                </li>
+                            </ul>
+                            <div class="el-loading-mask" style="background-color: rgba(0, 0, 0, 0.8); display: none;">
+                                <div class="el-loading-spinner">
+                                    <svg viewBox="25 25 50 50" class="circular">
+                                        <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+                                    </svg>
+                                    <p class="el-loading-text">数据加载中...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div element-loading-text="数据加载中..." element-loading-background="rgba(0, 0, 0, 0.8)" class="home-head-chart home-head-data margin-left-10" style="background: #d1dbe5">
+                            <div id="homeId" style="width: 800px;height:300px;">
+
+                            </div>
+                            <div class="el-loading-mask" style="background-color: rgba(0, 0, 0, 0.8); display: none;">
+                                <div class="el-loading-spinner">
+                                    <svg viewBox="25 25 50 50" class="circular">
+                                        <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+                                    </svg>
+                                    <p class="el-loading-text">数据加载中...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="home-center">
+                        <div class="el-table el-table--fit el-table--enable-row-hover el-table--enable-row-transition" element-loading-text="数据加载中..." element-loading-background="rgba(0, 0, 0, 0.8)">
+                            <div class="hidden-columns">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                            </div>
+                            <div class="el-table__header-wrapper">
+                                <table cellspacing="0" cellpadding="0" border="0" class="el-table__header" style="width: 1351px;">
+                                    <colgroup>
+                                        <col name="el-table_1_column_1" width="340">
+                                        <col name="el-table_1_column_2" width="337">
+                                        <col name="el-table_1_column_3" width="337">
+                                        <col name="el-table_1_column_4" width="337">
+                                        <col name="gutter" width="0">
+                                    </colgroup>
+                                    <thead class="has-gutter">
+                                    <tr class="">
+                                        <th colspan="1" rowspan="1" class="el-table_1_column_1  is-center   is-leaf" style="background-color: rgb(59, 62, 84); color: rgb(153, 153, 153); text-align: center; border-color: rgb(102, 102, 102);">
+                                            <div class="cell">节点Id</div>
+                                        </th>
+                                        <th colspan="1" rowspan="1" class="el-table_1_column_2  is-center   is-leaf" style="background-color: rgb(59, 62, 84); color: rgb(153, 153, 153); text-align: center; border-color: rgb(102, 102, 102);">
+                                            <div class="cell">当前块高</div>
+                                        </th>
+                                        <th colspan="1" rowspan="1" class="el-table_1_column_3  is-center   is-leaf" style="background-color: rgb(59, 62, 84); color: rgb(153, 153, 153); text-align: center; border-color: rgb(102, 102, 102);">
+                                            <div class="cell">pbftView</div>
+                                        </th>
+                                        <th colspan="1" rowspan="1" class="el-table_1_column_4  is-center   is-leaf" style="background-color: rgb(59, 62, 84); color: rgb(153, 153, 153); text-align: center; border-color: rgb(102, 102, 102);">
+                                            <div class="cell">节点状态</div>
+                                        </th>
+                                        <th class="gutter" style="width: 0px; display: none;">
+
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="el-table__body-wrapper is-scrolling-none">
+                                <table cellspacing="0" cellpadding="0" border="0" class="el-table__body" style="width: 1351px;">
+                                    <colgroup>
+                                        <col name="el-table_1_column_1" width="340">
+                                        <col name="el-table_1_column_2" width="337">
+                                        <col name="el-table_1_column_3" width="337">
+                                        <col name="el-table_1_column_4" width="337">
+                                    </colgroup>
+                                    <tbody>
+                                    <tr class="el-table__row table-style" v-for="(todo, i) in nodeList">
+                                        <td rowspan="1" colspan="1" class="el-table_1_column_1 is-center " style="width: 450px; border-color: rgb(102, 102, 102);">
+                                            <div class="cell el-tooltip" style="width: 339px;">
+                                                <i title="复制" class="wbs-icon-baocun copy-public-key" style="font-size: 15px; cursor: pointer;"></i>
+                                                <span>{{ todo.nodeId }}</span>
+                                            </div>
+                                        </td>
+                                        <td rowspan="1" colspan="1" class="el-table_1_column_2 is-center " style="width: 450px; border-color: rgb(102, 102, 102);">
+                                            <div class="cell el-tooltip" style="width: 336px;">{{ todo.highestblockNumber }}</div>
+                                        </td>
+                                        <td rowspan="1" colspan="1" class="el-table_1_column_3 is-center " style="width: 450px; border-color: rgb(102, 102, 102);">
+                                            <div class="cell el-tooltip" style="width: 336px;">{{ todo.view }}</div>
+                                        </td>
+                                        <td rowspan="1" colspan="1" class="el-table_1_column_4 is-center " style="width: 450px; border-color: rgb(102, 102, 102);">
+                                            <div class="cell el-tooltip" style="width: 336px;">
+                                                <span style="color: rgb(0, 255, 0);">{{ todo.static }}</span> <!----> <!---->
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table><!----><!---->
+                            </div><!----><!----><!----><!---->
+                            <div class="el-table__column-resize-proxy" style="display: none;">
+
+                            </div>
+                            <div class="el-loading-mask" style="background-color: rgba(0, 0, 0, 0.8); display: none;">
+                                <div class="el-loading-spinner">
+                                    <svg viewBox="25 25 50 50" class="circular">
+                                        <circle cx="50" cy="50" r="20" fill="none" class="path">
+
+                                        </circle>
+                                    </svg>
+                                    <p class="el-loading-text">数据加载中...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="home-foot">
+                        <div class="home-foot-box margin-right-10">
+                            <div class="home-foot-box-nav">
+                                <div class="left">
+                                    <span class="line">
+                                    </span>
+                                    <span class="text">区块</span>
+                                </div>
+                                <div class="right">
+                                    <a href="./block_list.html"><span class="table-link" style="padding-right: 30px;"> 更多 &gt;</span></a>
+                                </div>
+                            </div>
+                            <div element-loading-text="数据加载中..." element-loading-background="rgba(0, 0, 0, 0.8)" class="home-foot-box-content">
+                                <ul>
+                                    <li class="item" v-for="(todo, i) in block_list">
+                                        <div class="left">
+                                            <a v-bind:href="'block_detail.html?blockHash=' + todo.block_hash"><div class="table-link">区块 {{ todo.block_num }}</div></a>
+                                            <div>{{ todo.time }}</div>
+                                        </div>
+                                        <div class="right">
+                                            <div>区块哈希&nbsp;&nbsp;&nbsp;
+                                                <span title="" class="block-number">
+                                                    {{ todo.block_hash }}
+                                                </span>
+                                            </div>
+<!--                                            <a v-bind:href="'transaction_list.html?blockNumber='+ todo.block_num"><div class="txn">{{ todo.transaction_num }} txns</div></a>-->
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="el-loading-mask" style="background-color: rgba(0, 0, 0, 0.8); display: none;">
+                                    <div class="el-loading-spinner">
+                                        <svg viewBox="25 25 50 50" class="circular">
+                                            <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+                                        </svg>
+                                        <p class="el-loading-text">数据加载中...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="home-foot-box margin-left-10">
+                            <div class="home-foot-box-nav">
+                                <div class="left">
+                                    <span class="line"></span>
+                                    <span class="text">交易</span>
+                                </div>
+                                <div class="right">
+                                    <a href="transaction_list.html"><span class="table-link" style="padding-right: 30px;"> 更多 &gt;</span></a>
+                                </div>
+                            </div>
+                            <div element-loading-text="数据加载中..." element-loading-background="rgba(0, 0, 0, 0.8)" class="home-foot-box-content">
+                                <ul>
+                                    <li class="item" v-for="(todo, i) in transaction_list">
+                                        <div class="left">
+                                            <div class="transaction">
+                                                交易
+                                                <a v-bind:href="'transaction_detail.html?transactionHash=' + todo.transaction_hash">
+                                                <span title="" class="table-link">
+                                                    {{ todo.transaction_hash }}
+                                                </span>
+                                                </a>
+                                            </div>
+                                            <div>
+                                                <div title="0x95198b93705e394a916579e048c8a32ddfb900f7" class="number">
+                                                    {{ todo.from }}
+                                                </div>
+                                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAOCAYAAADJ7fe0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoxMGNjZDFhMC1jYzNjLTYzNGYtYWVjMS0yYzJkYmU4MTg2ZjYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6REM5RTc4RkE2MDBGMTFFODlDQzVBNjI3OUE3OEJENjYiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6REM5RTc4Rjk2MDBGMTFFODlDQzVBNjI3OUE3OEJENjYiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ZWJmMWJjY2QtZTk0OS02ODRiLTllMTEtMzI0OTVjMmRmZjkyIiBzdFJlZjpkb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6OTA5ZTE2MTYtNTk3ZC0xMWU4LTg1YjgtOTAxMTIwNTNiYTNkIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+ypwH8AAAAIhJREFUeNpi/H+JgRggC8S+QDwNmyQTA3GAEYinAHEeJYbADJoAxIWUGAIzqA+IS5AFWYD4PwPpoBuImYG4kxyXIIMOIK6CuYQS0ApyERMD5YCRUpfUgFxDiSGV0HABBywjEVgezYAymAHkBmwxNK0wkGMIKD0VAPEkdAkWEgzIBeKp2CQBAgwAgRwRzx4L0DQAAAAASUVORK5CYII=" class="image">
+                                                <div class="number">
+                                                    {{ todo.to }}
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="right">
+                                            <div>{{ todo.time }}</div>
+                                            <div>
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="el-loading-mask" style="background-color: rgba(0, 0, 0, 0.8); display: none;">
+                                    <div class="el-loading-spinner">
+                                        <svg viewBox="25 25 50 50" class="circular">
+                                            <circle cx="50" cy="50" r="20" fill="none" class="path">
+
+                                            </circle>
+                                        </svg>
+                                        <p class="el-loading-text">数据加载中...</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!---->
+    </div>
+</div>
+<script src="./js/browser_index.js"></script>
+</body>
+</html>

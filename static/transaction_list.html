@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<!-- saved from url=(0039)http://192.168.1.108:5100/#/transaction -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--    <link rel="icon" href="http://192.168.1.108:5100/static/image/logo-title.png" type="image/x-icon">-->
+    <meta name="HandheldFriendly" content="true">
+    <title>交易列表</title>
+    <style type="text/css">
+        html,body{
+            margin: 0;
+            height: 100%;
+            min-width: 800px;
+        }
+        .content-nav{
+            width:100%;
+            height:34px;
+            overflow:hidden;
+            color:#fff
+        }
+        .content-nav .title{
+            float:left;
+            font-size:16px
+        }
+        .content-nav .content{
+            float:right;
+            font-size:14px
+        }
+        .content[data-v-a36316e4] .jv-code{
+            max-height:none
+        }
+        .jv-container {
+            box-sizing: border-box;
+            position: relative;
+        }
+        .jv-container.boxed {
+            border: 1px solid #eee;
+            border-radius: 6px;
+        }
+        .jv-container.boxed:hover {
+            box-shadow: 0 2px 7px rgba(0, 0, 0, 0.15);
+            border-color: transparent;
+            position: relative;
+        }
+        .jv-container.jv-light {
+            background: #fff;
+            white-space: nowrap;
+            color: #525252;
+            font-size: 14px;
+            font-family: Consolas, Menlo, Courier, monospace;
+        }
+        .jv-container.jv-light .jv-ellipsis {
+            color: #999;
+            background-color: #eee;
+            display: inline-block;
+            line-height: 0.9;
+            font-size: 0.9em;
+            padding: 0px 4px 2px 4px;
+            margin: 0 4px;
+            border-radius: 3px;
+            vertical-align: 2px;
+            cursor: pointer;
+            user-select: none;
+        }
+        .jv-container.jv-light .jv-button {
+            color: #49b3ff;
+        }
+        .jv-container.jv-light .jv-key {
+            color: #111111;
+            margin-right: 4px;
+        }
+        .jv-container.jv-light .jv-item.jv-array {
+            color: #111111;
+        }
+        .jv-container.jv-light .jv-item.jv-boolean {
+            color: #fc1e70;
+        }
+        .jv-container.jv-light .jv-item.jv-function {
+            color: #067bca;
+        }
+        .jv-container.jv-light .jv-item.jv-number {
+            color: #fc1e70;
+        }
+        .jv-container.jv-light .jv-item.jv-object {
+            color: #111111;
+        }
+        .jv-container.jv-light .jv-item.jv-undefined {
+            color: #e08331;
+        }
+        .jv-container.jv-light .jv-item.jv-string {
+            color: #42b983;
+            word-break: break-word;
+            white-space: normal;
+        }
+        .jv-container.jv-light .jv-code .jv-toggle:before {
+            padding: 0px 2px;
+            border-radius: 2px;
+        }
+        .jv-container.jv-light .jv-code .jv-toggle:hover:before {
+            background: #eee;
+        }
+        .jv-container .jv-code {
+            max-height: 300px;
+            overflow: hidden;
+            padding: 20px;
+        }
+        .jv-container .jv-code.open {
+            max-height: initial;
+            overflow: visible;
+            overflow-x: auto;
+            padding-bottom: 45px;
+        }
+        .jv-container .jv-toggle {
+            background-image: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE2IiB3aWR0aD0iOCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KIAo8cG9seWdvbiBwb2ludHM9IjAsMCA4LDggMCwxNiIKc3R5bGU9ImZpbGw6IzY2NjtzdHJva2U6cHVycGxlO3N0cm9rZS13aWR0aDowIiAvPgo8L3N2Zz4=);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+            cursor: pointer;
+            width: 10px;
+            height: 10px;
+            margin-right: 2px;
+            display: inline-block;
+            transition: transform 0.1s;
+        }
+        .jv-container .jv-toggle.open {
+            transform: rotate(90deg);
+        }
+        .jv-container .jv-more {
+            position: absolute;
+            z-index: 1;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40px;
+            width: 100%;
+            text-align: center;
+            cursor: pointer;
+        }
+        .jv-container .jv-more .jv-toggle {
+            position: relative;
+            top: 40%;
+            z-index: 2;
+            color: #888;
+            transition: all 0.1s;
+            transform: rotate(-90deg);
+        }
+        .jv-container .jv-more:after {
+            content: "";
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(230, 230, 230, 0.3) 100%);
+            transition: all 0.1s;
+        }
+        .jv-container .jv-more:hover .jv-toggle {
+            top: 50%;
+            color: #111;
+        }
+        .jv-container .jv-more:hover:after {
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 20%, rgba(230, 230, 230, 0.3) 100%);
+        }
+        .jv-container .jv-button {
+            position: relative;
+            cursor: pointer;
+            display: inline-block;
+            padding: 5px;
+            z-index: 5;
+        }
+        .jv-container .jv-button.copied {
+            opacity: 0.4;
+            cursor: default;
+        }
+        .jv-container .jv-tooltip {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+        .jv-container .j-icon {
+            font-size: 12px;
+        }
+        a {
+            color: black;
+            text-decoration: none;
+        }
+        .jv-node {
+            position: relative;
+        }
+        .jv-node:after {
+            content: ',';
+        }
+        .jv-node:last-of-type:after {
+            content: '';
+        }
+        .jv-node .jv-node {
+            margin-left: 25px;
+        }
+    </style>
+    <link href="./css/public.css" rel="stylesheet">
+    <link href="./css/all.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+<!--    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+    <script src="./js/axios.min.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="app" class="web-font">
+    <div style="height: 100%;">
+        <div element-loading-text="数据加载中..." element-loading-background="rgba(0, 0, 0, 0.8)" style="height: 100%;">
+            <div>
+                <div class="nav-header">
+                    <div class="container">
+                        <div class="logo">
+                            <a href="./index.html"><img src="./pic/fisco-bcos-logo.3a5e45c.png" class="image" style="width: 170px;"></a>
+                        </div>
+<!--                        <div class="nav-menu" style="float: left;">-->
+<!--                            <div class="nav-menu-item nav-item" style="display: inline-block; width: 160px; text-align: right;">-->
+<!--                                <span>1</span>-->
+<!--                                <div class="nav-chainType">-->
+
+<!--                                </div>-->
+<!--                                <ul class="select1">-->
+<!--                                    <li style="cursor: default;">-->
+<!--                                        <span class="name">1</span>-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+<!--                                <i class="el-icon-caret-bottom icon-up icon">-->
+<!--                                </i>-->
+<!--                                <i class="el-icon-caret-top icon-down icon"></i>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="nav-menu">
+<!--                            <div class="nav-menu-item nav-item">配置-->
+<!--                                <i class="el-icon-caret-bottom icon-up"></i>-->
+<!--                                <i class="el-icon-caret-top icon-down"></i>-->
+<!--                                <ul class="nav-menu-item-option">-->
+<!--                                    <li class="option">群组配置</li>-->
+<!--                                    <li class="option">节点配置</li>-->
+<!--                                    <li class="option">合约配置</li>-->
+<!--                                </ul>-->
+<!--                            </div>-->
+                            <div class="nav-menu-item nav-item">区块链信息
+                                <i class="el-icon-caret-bottom icon-up"></i>
+                                <i class="el-icon-caret-top icon-down"></i>
+                                <ul class="nav-menu-item-option">
+                                    <li class="option"><a href="./index.html">概览</a></li>
+                                    <li class="option"><a href="./block_list.html">查看区块</a></li>
+                                    <li class="option"><a href="transaction_list.html">查看交易</a></li>
+                                </ul>
+                            </div>
+<!--                            <div class="nav-menu-item nav-item">帮助</div>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="padding-top: 20px;"></div>
+            <div class="search-main main" style="height: auto;">
+                <div class="container">
+                    <div class="content-nav">
+                        <div class="title">交易 </div>
+                        <div class="content"><!---->
+                            <a href="./index.html"><span class="table-link">概览</span> </a>
+                            <span> / 交易</span>
+                        </div>
+                    </div>
+                    <div class="search-nav">
+                        <div class="hashInput">
+                            <div class="input-with-select el-input el-input-group el-input-group--append"><!---->
+                                <input type="text" autocomplete="off" placeholder="请输入区块哈希或块高" class="el-input__inner" id="id-input-text">
+                                <div class="el-input-group__append">
+                                    <button type="button" class="el-button el-button--default" v-on:click="search_block()"><!---->
+                                        <i class="el-icon-search"></i><!---->
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-table">
+                        <div class="el-table el-table--fit el-table--enable-row-hover el-table--enable-row-transition" element-loading-text="数据加载中..." element-loading-background="rgba(0, 0, 0, 0.8)">
+                            <div class="hidden-columns">
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div></div>
+                                <div><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAOCAYAAADJ7fe0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoxMGNjZDFhMC1jYzNjLTYzNGYtYWVjMS0yYzJkYmU4MTg2ZjYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6REM5RTc4RkE2MDBGMTFFODlDQzVBNjI3OUE3OEJENjYiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6REM5RTc4Rjk2MDBGMTFFODlDQzVBNjI3OUE3OEJENjYiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ZWJmMWJjY2QtZTk0OS02ODRiLTllMTEtMzI0OTVjMmRmZjkyIiBzdFJlZjpkb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6OTA5ZTE2MTYtNTk3ZC0xMWU4LTg1YjgtOTAxMTIwNTNiYTNkIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+ypwH8AAAAIhJREFUeNpi/H+JgRggC8S+QDwNmyQTA3GAEYinAHEeJYbADJoAxIWUGAIzqA+IS5AFWYD4PwPpoBuImYG4kxyXIIMOIK6CuYQS0ApyERMD5YCRUpfUgFxDiSGV0HABBywjEVgezYAymAHkBmwxNK0wkGMIKD0VAPEkdAkWEgzIBeKp2CQBAgwAgRwRzx4L0DQAAAAASUVORK5CYII="></div>
+                                <div></div>
+                            </div>
+                            <div class="el-table__header-wrapper">
+                                <table cellspacing="0" cellpadding="0" border="0" class="el-table__header" style="width: 1351px;">
+                                    <colgroup>
+                                        <col name="el-table_7_column_35" width="554">
+                                        <col name="el-table_7_column_36" width="157">
+                                        <col name="el-table_7_column_37" width="125">
+                                        <col name="el-table_7_column_38" width="235">
+                                        <col name="el-table_7_column_39" width="125">
+                                        <col name="el-table_7_column_40" width="30">
+                                        <col name="el-table_7_column_41" width="125">
+                                        <col name="gutter" width="0">
+                                    </colgroup>
+                                    <thead class="has-gutter">
+                                    <tr class="">
+                                        <th colspan="1" rowspan="1" class="el-table_7_column_35  is-center   is-leaf">
+                                            <div class="cell">哈希</div>
+                                        </th>
+                                        <th colspan="1" rowspan="1" class="el-table_7_column_36  is-center   is-leaf">
+                                            <div class="cell">所属块</div>
+                                        </th>
+                                        <th colspan="1" rowspan="1" class="el-table_7_column_37  is-center   is-leaf">
+                                            <div class="cell">交易块内ID</div>
+                                        </th>
+                                        <th colspan="1" rowspan="1" class="el-table_7_column_38  is-center   is-leaf">
+                                            <div class="cell">交易时间</div>
+                                        </th>
+                                        <th colspan="1" rowspan="1" class="el-table_7_column_39  is-center   is-leaf">
+                                            <div class="cell">发送者</div>
+                                        </th>
+                                        <th colspan="1" rowspan="1" class="el-table_7_column_40  is-center   is-leaf">
+                                            <div class="cell"></div>
+                                        </th>
+                                        <th colspan="1" rowspan="1" class="el-table_7_column_41  is-center   is-leaf">
+                                            <div class="cell">接受者</div>
+                                        </th>
+                                        <th class="gutter" style="width: 0px; display: none;"></th>
+                                    </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="el-table__body-wrapper is-scrolling-none">
+                                <table cellspacing="0" cellpadding="0" border="0" class="el-table__body" style="width: 1351px;">
+                                    <colgroup>
+                                        <col name="el-table_7_column_35" width="554">
+                                        <col name="el-table_7_column_36" width="157">
+                                        <col name="el-table_7_column_37" width="125">
+                                        <col name="el-table_7_column_38" width="235">
+                                        <col name="el-table_7_column_39" width="125">
+                                        <col name="el-table_7_column_40" width="30">
+                                        <col name="el-table_7_column_41" width="125">
+                                    </colgroup>
+                                    <tbody>
+                                    <tr class="el-table__row" v-for="(todo, i) in transaction_list">
+                                        <td rowspan="1" colspan="1" class="el-table_7_column_35 is-center ">
+                                            <div class="cell el-tooltip" style="width: 553px;">
+                                                <a v-bind:href="'transaction_detail.html?transactionHash=' + todo.hash">
+                                                    <span class="table-link">
+                                                        {{ todo.hash }}
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </td>
+                                        <td rowspan="1" colspan="1" class="el-table_7_column_36 is-center ">
+                                            <div class="cell el-tooltip" style="width: 156px;">
+<!--                                                <span class="table-link">-->
+                                                    {{ todo.blockNumber }}
+<!--                                                </span>-->
+                                            </div>
+                                        </td>
+                                        <td rowspan="1" colspan="1" class="el-table_7_column_37 is-center ">
+                                            <div class="cell el-tooltip" style="width: 124px;">
+                                                {{ todo.transactionIndex }}
+                                            </div>
+                                        </td>
+                                        <td rowspan="1" colspan="1" class="el-table_7_column_38 is-center ">
+                                            <div class="cell el-tooltip" style="width: 234px;">
+                                                {{ todo.time }}
+                                            </div>
+                                        </td>
+                                        <td rowspan="1" colspan="1" class="el-table_7_column_39 is-center ">
+                                            <div class="cell el-tooltip" style="width: 124px;">
+                                                {{ todo.from }}
+                                            </div>
+                                        </td>
+                                        <td rowspan="1" colspan="1" class="el-table_7_column_40 is-center ">
+                                            <div class="cell"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABEAAAAOCAYAAADJ7fe0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA4RpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMDY3IDc5LjE1Nzc0NywgMjAxNS8wMy8zMC0yMzo0MDo0MiAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDoxMGNjZDFhMC1jYzNjLTYzNGYtYWVjMS0yYzJkYmU4MTg2ZjYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6REM5RTc4RkE2MDBGMTFFODlDQzVBNjI3OUE3OEJENjYiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6REM5RTc4Rjk2MDBGMTFFODlDQzVBNjI3OUE3OEJENjYiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTUgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6ZWJmMWJjY2QtZTk0OS02ODRiLTllMTEtMzI0OTVjMmRmZjkyIiBzdFJlZjpkb2N1bWVudElEPSJhZG9iZTpkb2NpZDpwaG90b3Nob3A6OTA5ZTE2MTYtNTk3ZC0xMWU4LTg1YjgtOTAxMTIwNTNiYTNkIi8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+ypwH8AAAAIhJREFUeNpi/H+JgRggC8S+QDwNmyQTA3GAEYinAHEeJYbADJoAxIWUGAIzqA+IS5AFWYD4PwPpoBuImYG4kxyXIIMOIK6CuYQS0ApyERMD5YCRUpfUgFxDiSGV0HABBywjEVgezYAymAHkBmwxNK0wkGMIKD0VAPEkdAkWEgzIBeKp2CQBAgwAgRwRzx4L0DQAAAAASUVORK5CYII="></div>
+                                        </td>
+                                        <td rowspan="1" colspan="1" class="el-table_7_column_41 is-center ">
+                                            <div class="cell el-tooltip" style="width: 124px;">
+                                                <span>{{ todo.to }}</span>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table><!----><!---->
+                            </div><!----><!----><!----><!---->
+                            <div class="el-table__column-resize-proxy" style="display: none;">
+
+                            </div>
+                            <div class="el-loading-mask" style="background-color: rgba(0, 0, 0, 0.8); display: none;">
+                                <div class="el-loading-spinner">
+                                    <svg viewBox="25 25 50 50" class="circular">
+                                        <circle cx="50" cy="50" r="20" fill="none" class="path"></circle>
+                                    </svg>
+                                    <p class="el-loading-text">数据加载中...</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="search-pagation">
+                            <div style="line-height: 40px;">
+                                <span>查询结果 : </span>
+                                <span>共计{{ transaction_num }}条数据</span>
+                            </div>
+                            <div class="el-pagination" style="display: inline-block;">
+                                <button type="button" class="btn-prev" id="id-button-left" disabled="disabled" v-on:click="subtract_page()">
+                                    <i class="el-icon el-icon-arrow-left"></i>
+                                </button>
+<!--                                <ul class="el-pager">-->
+<!--                                    <li class="active" v-for="(todo,i) in page_num" v-bind:id="'page' + i" v-on:click="change_page(i + 1)">-->
+<!--                                        {{ i + 1 }}-->
+<!--                                    </li>-->
+<!--                                </ul>-->
+                                <ul class="el-pager">
+                                    <li class="number">{{ page }}</li>
+                                </ul>
+                                <button type="button" class="btn-next" id="id-button-right" v-on:click="add_page()">
+                                    <i class="el-icon el-icon-arrow-right"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> <!---->
+    </div>
+</div>
+<script src="./js/transaction_list.js"></script>
+</body>
+</html>
