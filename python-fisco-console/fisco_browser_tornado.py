@@ -7,8 +7,11 @@ from process_logic import (
     get_transaction_list_data,
     get_transaction_detail_data,
     send_transaction_get_txhash,
-    get_block_detail_data
+    get_block_detail_data,
+    get_data_parser
 )
+
+data_parser, abi_file = get_data_parser()
 
 
 # 发送交易上链接口

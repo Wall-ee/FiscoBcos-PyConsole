@@ -18,6 +18,10 @@ info = client.init()
 
 
 def get_data_parser():
+    if os.path.isfile(client_config.solc_path) or os.path.isfile(client_config.solcjs_path):
+        Compiler.compile_file("contracts/HelloWorld.sol")
+        Compiler.compile_file("contracts/SimpleInfo.sol")
+
     abi_file = "contracts/SimpleInfo.abi"
     data_parser = DatatypeParser()
     data_parser.load_abi_file(abi_file)
@@ -84,13 +88,13 @@ def get_one_transaction(res):
     transactionTime = time.strftime("%Y-%m-%d %H:%M:%S",
                                     time.localtime(int(str(int(block_res.get("timestamp"), 16))[0:10])))
     result = {
-                "hash": res.get("hash", ""),
-                "from": res.get("from", ""),
-                "to": res.get("to", ""),
-                "blockNumber": int(res.get("blockNumber", ""), 16),
-                "transactionIndex": int(res.get("transactionIndex", ""), 16),
-                "time": transactionTime
-            }
+        "hash": res.get("hash", ""),
+        "from": res.get("from", ""),
+        "to": res.get("to", ""),
+        "blockNumber": int(res.get("blockNumber", ""), 16),
+        "transactionIndex": int(res.get("transactionIndex", ""), 16),
+        "time": transactionTime
+    }
     return result
 
 
