@@ -15,11 +15,11 @@ https://github.com/FISCO-BCOS/fisco-bcos-browser.git
 #### 项目效果
 首页
 
-![首页截图](https://github.com/Wall-ee/FiscoBcos-PyConsole/index.png)
+![首页截图](https://github.com/Wall-ee/FiscoBcos-PyConsole/blob/master/index.png)
 
 交易详情
 
-![首页截图](https://github.com/Wall-ee/FiscoBcos-PyConsole/transaction_detail.png)
+![首页截图](https://github.com/Wall-ee/FiscoBcos-PyConsole/blob/master/transaction_detail.png)
 
 ### 环境要求
 1. Fisco Bcos 网络配置完毕
