@@ -1,25 +1,40 @@
 # FiscoBcos-PyConsole
 FiscoBcos 的区块链浏览器
 
+### 简介
 基于python-sdk开发的区块链浏览器，页面参考原始的区块链浏览器
 ```
 https://github.com/FISCO-BCOS/fisco-bcos-browser.git
 ```
-原始工程需要Python2.7, Java, 以及mysql. 工程部署过于复杂和繁琐。因此进行了简化，只需要Python3.5+版本即可,不需要任何数据库
+点击进入原始 [区块链浏览器](https://github.com/FISCO-BCOS/fisco-bcos-browser.git)
 
-###环境要求
-1. fisco bcos 网络配置完毕
+本工程只需要Python3.5 + 即可
+
+原始工程需要Python2.7, Java, 以及MySQL.因此进行了简化,不需要任何数据库
+
+#### 项目效果
+首页
+
+![首页截图](https://github.com/Wall-ee/FiscoBcos-PyConsole/index.png)
+
+交易详情
+
+![首页截图](https://github.com/Wall-ee/FiscoBcos-PyConsole/transaction_detail.png)
+
+### 环境要求
+1. Fisco Bcos 网络配置完毕
 2. Python3.5+
-3. 安装fisco bcos 的python-sdk
+3. 安装Fisco Bcos 的Python-SDK
 ```
 https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/python_sdk/install.html
 ```
+点击进入[Python SDK](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/python_sdk/install.html)
 
 ### 使用方法
 
 1. 安装Fisco Bcos的python-sdk，python-sdk配置规则参照官方教程，
 
-2. static文件夹包含静态页面，将static文件夹与接口文件py结尾的文件一并复制放入python-sdk根文件夹,
+2. 将python-fisco-consle下面的所有文件与文件夹一并复制放入python-sdk根目录。其中包括static静态页面目录，以及flask和tornado 的启动文件。
 
 3. 启动fisco_browser_flask.py 或 fisco_browser_tornado.py 则分别启动flask/tornado 的工程。
 
