@@ -121,7 +121,7 @@ var app = new Vue({
                 this.blockNumber = num_or_hash
                 console.log(this.blockNumber, this.high_block_num)
                 if(this.blockNumber < 0 || this.blockNumber > this.high_block_num){
-                    alert("输入正确的块高或哈希1")
+                    alert("输入正确的块高或哈希")
                 }else {
                     console.log(num_or_hash, "number")
                     axios({
@@ -146,7 +146,7 @@ var app = new Vue({
             }else {
                 this.blockHash = num_or_hash
                 if (this.blockHash.length != 66) {
-                    alert("输入正确的块高或哈希2")
+                    alert("输入正确的块高或哈希")
                 } else {
                     axios({
                         method: 'get',

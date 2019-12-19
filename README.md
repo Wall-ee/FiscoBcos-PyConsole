@@ -32,13 +32,13 @@ https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/python_sdk
 
 ### 使用方法
 
-1. 安装Fisco Bcos的python-sdk，python-sdk配置规则参照官方教程，
+1. 安装Fisco Bcos的python-sdk，python-sdk配置规则参照官方教程；
 
-2. 将python-fisco-consle下面的所有文件与文件夹一并复制放入python-sdk根目录。其中包括static静态页面目录，以及flask和tornado 的启动文件。
+2. 将python-fisco-consle下面的所有文件与文件夹一并复制放入python-sdk根目录。其中包括static静态页面目录，以及flask和tornado 的启动文件；
 
-3. 启动fisco_browser_flask.py 或 fisco_browser_tornado.py 则分别启动flask/tornado 的工程。
+3. 启动fisco_browser_flask.py 或 fisco_browser_tornado.py 则分别启动flask/tornado 的工程；
 
-4. 访问地址:http:ip:5555/index.html
+4. flask主页访问地址:http:ip:5555/index.html，tornado主页可自行配置Nginx托管静态页面后访问。
 
 ### 区块链浏览器的api详解：
 
