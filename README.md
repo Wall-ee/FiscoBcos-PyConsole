@@ -24,12 +24,16 @@ https://github.com/FISCO-BCOS/fisco-bcos-browser.git
 ### 环境要求
 1. Fisco Bcos 网络配置完毕
 2. Python3.5+
-3. 安装Fisco Bcos 的Python-SDK
+3. Flask/Tornado安装
+4. 安装Fisco Bcos 的Python-SDK
 ```
 https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/python_sdk/install.html
 ```
 点击进入[Python SDK](https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/python_sdk/install.html)
 
+轻量级Python的Http服务器--Flask [官方文档](https://flask.palletsprojects.com/en/master/)
+
+高性能异步非阻塞Python服务器(FaceBook开源)--Tornado [官方文档](http://www.tornadoweb.org/en/stable/)
 ### 使用方法
 
 1. 安装Fisco Bcos的python-sdk，python-sdk配置规则参照官方教程；
