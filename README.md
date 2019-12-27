@@ -38,7 +38,9 @@ https://fisco-bcos-documentation.readthedocs.io/zh_CN/latest/docs/sdk/python_sdk
 
 3. 启动fisco_browser_flask.py 或 fisco_browser_tornado.py 则分别启动flask/tornado 的工程；
 
-4. 主页访问地址:http:ip:5555/index.html
+4. flask主页访问地址: http:ip:5555/index.html
+
+   tornado主页访问地址: http:ip:5555 或 http:ip:5555/static/index.html
 
 ### 区块链浏览器的api详解：
 

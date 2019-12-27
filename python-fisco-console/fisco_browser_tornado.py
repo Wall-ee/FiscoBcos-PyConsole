@@ -1,3 +1,4 @@
+import os
 import tornado.web
 import tornado.ioloop
 import json
@@ -58,11 +59,23 @@ class QueryHandler(tornado.web.RequestHandler):
             self.write(json.dumps(result))
 
 
-application = tornado.web.Application([
-    (r'/sendTrans/(.*)', TransHandler),
-    (r'/query_info/(.*)', QueryHandler)
-])
+class Application(tornado.web.Application):
+    def __init__(self):
+
+        handlers = [
+            (r'/sendTrans/(.*)', TransHandler),
+            (r'/query_info/(.*)', QueryHandler),
+            (r"/", tornado.web.RedirectHandler, {"url": "/index.html"}),
+        ]
+
+        settings = dict(
+            static_path=os.path.join(os.path.dirname(__file__), "static"),
+            template_path=os.path.join(os.path.dirname(__file__), "static"),
+        )
+        tornado.web.Application.__init__(self, handlers, **settings)
+
 
 if __name__ == "__main__":
+    application = Application()
     application.listen(5555)
     tornado.ioloop.IOLoop.instance().start()
